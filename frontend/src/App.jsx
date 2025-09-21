@@ -28,6 +28,7 @@ function App() {
         <Route index element={<Home recipes={recipes} />} />
         <Route path='/myrecipe' element={<Home/>}/>
         <Route path='/favrecipe' element={<Home/>}/>
+        <Route path='/addrecipe' element={<AddFoodRecipe/>}/>
       </Route>
     </Routes>
   )

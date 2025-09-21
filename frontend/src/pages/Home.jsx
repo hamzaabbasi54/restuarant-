@@ -1,14 +1,16 @@
 import foodRecipe from '../assets/foodRecipe.png'
 import RecipeItem from '../components/RecipeItem'
+import {useNavigate} from "react-router-dom";
 
 function Home({recipes}) {
+    const navigate = useNavigate();
   return (
     <>
             <section className="home" >
         <div className='left'>
             <h1>Food Recipe</h1>
             <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est facilis, ipsa labore omnis quod repellat tenetur! Cupiditate nostrum pariatur quae sapiente sequi? Aliquam cum ea fugiat hic ipsum nihil possimus!</h5>
-            <button>Share Your recipe</button>
+            <button onClick={()=>navigate("/addrecipe")}>Share Your recipe</button>
         </div>
         <div className="right">
             <img src={foodRecipe} width='320px' height='300px'></img>

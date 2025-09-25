@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe}
+import {getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe,upload}
     from '../controller/recipe.js';
 
 const router=Router();
@@ -8,7 +8,7 @@ router.get('/',getRecipes);//get all the recipe
 
 router.get('/:id',getRecipe);//get recipe by id
 
-router.post('/',addRecipe);//add recipe
+router.post('/',upload.single('file'),addRecipe);//add recipe
 
 router.put('/:id',editRecipe);//edit recipe
 

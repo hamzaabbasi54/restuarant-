@@ -1,4 +1,16 @@
 import {RecipeModel} from '../models/recipe.js';
+import multer from "multer";
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/images')
+    },
+    filename: function (req, file, cb) {
+        const filename = Date.now() + '-' + file.fieldname
+        cb(null, filename)
+    }
+})
+
+export const upload = multer({ storage: storage })
 
 //get all the recipes
 export const getRecipes=async(req,res)=>{
@@ -28,17 +40,18 @@ export const getRecipes=async(req,res)=>{
  export const addRecipe=async(req,res)=>{
         try{
             
-        const {title,ingredients,instruction,time,coverImage}=req.body;
+        const {title,ingredients,instruction,time} = req.body;
+        const coverImage = req.file ? req.file.filename : null;
 
         const newRecipe= new RecipeModel({ title,ingredients,instruction,time, coverImage });
 
         await newRecipe.save();
         res.status(201).json(newRecipe);
-        console.log("✅ Recipe created successfully:"); // <-- log success message with recipe details
+        console.log("✅ Recipe created successfully:", newRecipe);
       }
     catch(err)
     {
-        console.error("❌ Error creating recipe:", err); // <-- log actual error
+        console.error("❌ Error creating recipe:", err);
         res.status(500).json({error:"Failed to create recipe"});
     }
  };
@@ -70,4 +83,3 @@ export const getRecipes=async(req,res)=>{
  export const deleteRecipe=(req,res)=>{
      res.json({"message":"Hello World!"});
  };
-

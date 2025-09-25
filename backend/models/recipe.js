@@ -7,7 +7,7 @@ const recipeSchema = new mongoose.Schema({
     trim: true
   },
   ingredients: { 
-    type: [String],  // Change to array of strings
+    type: Array,  // Change to array of strings
     required: true 
   },
   instruction: { 

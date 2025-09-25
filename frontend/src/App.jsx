@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import MainNavigation from './components/MainNavigation'
 import axios from 'axios'
 import Home from './pages/Home'
+import AddFoodRecipe from './pages/AddFoodRecipe'
 
 function App() {
   const [recipes, setRecipes] = useState([])

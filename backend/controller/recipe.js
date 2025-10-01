@@ -81,5 +81,15 @@ export const getRecipes=async(req,res)=>{
 
 
  export const deleteRecipe=(req,res)=>{
-     res.json({"message":"Hello World!"});
+    RecipeModel.findByIdAndDelete(req.params.id)
+        .then((doc)=>{
+            if(!doc){
+                return res.status(404).json({error:"Recipe not found"});
+            }
+            return res.status(200).json({message:"Recipe deleted"});
+        })
+        .catch((err)=>{
+            console.error("❌ Error deleting recipe:", err);
+            return res.status(500).json({error:"Failed to delete recipe"});
+        })
  };

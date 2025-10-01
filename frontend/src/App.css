@@ -161,6 +161,15 @@ section{
   width: 45px;
 }
 
+.heartIcon{
+  color: #9aa3a7;
+  cursor: pointer;
+}
+
+.heartActive{
+  color: #ef4444;
+}
+
 .editIcon{
   color: black;
   font-size: 18px;

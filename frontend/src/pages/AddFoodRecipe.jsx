@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function AddFoodRecipe() {
+export default function AddFoodRecipe({ onRecipeAdded }) {
     const [recipeData, setRecipeData] = useState({})
     const navigate = useNavigate()
     const onHandleChange = (e) => {
@@ -16,13 +16,16 @@ export default function AddFoodRecipe() {
     const onHandleSubmit = async (e) => {
         e.preventDefault()
         console.log(recipeData)
-        await axios.post("http://localhost:3000/recipe", recipeData,{
+        const res = await axios.post("http://localhost:3000/recipe", recipeData,{
             headers:{
                 'Content-Type':'multipart/form-data',
                 'authorization':'bearer '+localStorage.getItem("token")
             }
         })
-            .then(() => navigate("/"))
+        if (res && res.data && typeof onRecipeAdded === 'function') {
+            onRecipeAdded(res.data)
+        }
+        navigate("/")
     }
     return (
         <>

@@ -118,12 +118,10 @@ Base URL: `http://localhost:3000`
 - MongoDB instance (local or Atlas)
 
 ### Environment Variables (backend)
-Create `backend/.env`:
-```env
-CONNECTION_STRING=mongodb+srv://<user>:<pass>@<cluster>/<db>
-SECRET_KEY=super-secret-jwt-key
-PORT=3000
-```
+Create `backend/.env` with these keys (do not commit values):
+- `CONNECTION_STRING`
+- `SECRET_KEY`
+- `PORT`
 
 ### Install & Run
 Open two terminals.

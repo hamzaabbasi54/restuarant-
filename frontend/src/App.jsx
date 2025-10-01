@@ -5,6 +5,7 @@ import MainNavigation from './components/MainNavigation'
 import axios from 'axios'
 import Home from './pages/Home'
 import AddFoodRecipe from './pages/AddFoodRecipe'
+import MyRecipes from './pages/MyRecipes'
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -27,7 +28,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainNavigation />}>
         <Route index element={<Home recipes={recipes} />} />
-        <Route path='/myrecipe' element={<Home/>}/>
+        <Route path='/myrecipe' element={<MyRecipes recipes={recipes}/>}/>
         <Route path='/favrecipe' element={<Home/>}/>
         <Route path='/addrecipe' element={<AddFoodRecipe/>}/>
       </Route>

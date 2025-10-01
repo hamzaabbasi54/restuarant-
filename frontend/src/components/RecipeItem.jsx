@@ -2,8 +2,10 @@ import React from 'react'
 import foodRecipe from '../assets/foodRecipe.png'
 import { BsFillStopwatchFill } from "react-icons/bs"
 import { FaHeart } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 export default function RecipeItem({recipes}) {
+    const navigate = useNavigate();
     console.log("Recipes in RecipeItem:", recipes)
     return (
         <div className='card-container'>
@@ -16,7 +18,7 @@ export default function RecipeItem({recipes}) {
                         ? `http://localhost:3000/images/${recipe.coverImage}`
                         : foodRecipe;
                     return (
-                        <div key={index} className='card'>
+                        <div key={index} className='card' onClick={() => navigate('/myrecipe')} style={{cursor: 'pointer'}}>
                             <img src={imageUrl} width='120px' height='100px' alt={recipe.title} />
                             <div className='card-body'>
                                 <div className='card-title'>{recipe.title}</div>
